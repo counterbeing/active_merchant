@@ -5,13 +5,19 @@ module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
       module Knox
+        
+        def self.service_url 
+          'https://knoxpayments.com/newflow/index.php?recurring=ot' 
+        end
 
-        mattr_accessor :service_url
-        self.service_url = 'https://www.example.com'
-
-        def self.notification(post)
+        def self.notification(post, options = {})
           Notification.new(post)
         end
+        
+        def self.return(query_string, options = {})
+          Return.new(query_string)
+        end
+
       end
     end
   end
